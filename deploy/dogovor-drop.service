@@ -1,0 +1,21 @@
+[Unit]
+Description=Dogovor Drop Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dogovor
+WorkingDirectory=/opt/dogovor-drop
+EnvironmentFile=/opt/dogovor-drop/.env
+ExecStart=/opt/dogovor-drop/.venv/bin/python -m app
+Restart=always
+RestartSec=5
+# Baza faqat shu papkaga yoziladi
+ReadWritePaths=/opt/dogovor-drop/data /opt/dogovor-drop/backups
+NoNewPrivileges=true
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
