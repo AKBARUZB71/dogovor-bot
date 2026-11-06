@@ -1,0 +1,16 @@
+services:
+  bot:
+    build: .
+    container_name: dogovor-drop
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_PATH: /app/data/dogovor.db
+    volumes:
+      - ./data:/app/data
+      - ./backups:/app/backups
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
